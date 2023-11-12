@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.avatar {
+    background-image: url("./assets/avatar.jpg");
+    background-size: cover;
+}
