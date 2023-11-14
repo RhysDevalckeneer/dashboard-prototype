@@ -8,13 +8,12 @@ import {
     LinearScale,
     PointElement,
     LineElement,
-    Tooltip,
-    Filler,
     Title,
+    Filler,
+    Tooltip,
     Legend,
-} from 'chart.js';
-
-import { Line } from 'react-chartjs-2';
+  } from 'chart.js';
+  import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -51,14 +50,10 @@ export const options = {
     },
 };
   
-const labels = [
-    "1.0012770618165983",
-    "1.000920693141898",
-];
+export const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 const CryptoCard = ({name, imageUrl, value, symbol, mccp}: any) => {
     const [coinPrice, setCoinPrice] = useState([]);
-
     const [coinLine, setCoinLine] = useState([]);
 
     useEffect(() => {
@@ -81,7 +76,8 @@ const CryptoCard = ({name, imageUrl, value, symbol, mccp}: any) => {
             {
                 fill: true,
                 label: 'Dataset 2',
-                data: coinPrice.map(item => item),
+                // data: coinPrice.map(item => item),
+                data: labels.map(() => faker.number.int({ min: 0, max: 100 })),
 
                 borderColor: 'rgba(14, 165, 233, 1)',
                 backgroundColor: (context: any) => {
@@ -92,7 +88,8 @@ const CryptoCard = ({name, imageUrl, value, symbol, mccp}: any) => {
                     if(!context.chart.chartArea) {
                         return;
                     }
-                    // console.log(context.chart.chartArea)
+                    console.log(context.chart.chartArea)
+                    
                     const { ctx, data, chartArea: {top, bottom}} = context.chart;
                     const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
                     gradientBg.addColorStop(0, bgColor[0])
@@ -123,7 +120,7 @@ const CryptoCard = ({name, imageUrl, value, symbol, mccp}: any) => {
             <h3 className="font-bold text-slate-700 text-lg my-2">${value}</h3>
         </div>
     
-        <Line options={options} data={data} redraw={true} height="25px" width="100%" className="rounded"/>
+        <Line options={options} data={data} redraw={true} height="30px" width="100%" className="rounded"/>
     </div>
   )
 }

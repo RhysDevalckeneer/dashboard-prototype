@@ -6,7 +6,7 @@ const Dashboard = () => {
     const [data, setData] = useState([]);
     const [coinPrice, setCoinPrice] = useState([]);
     const firstFourCoins = data.slice(0, 4);
-    const otherCoins = data.slice(5, 23);
+    const otherCoins = data.slice(5, 29);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,24 +41,27 @@ const Dashboard = () => {
                                 name={item.name} 
                                 value={item.price} 
                                 symbol={item.symbol}
-                                mccp={item.market_cap_change_percentage_24h}
+                                mccp={item.change}
                             />
                         ))}
                     </div>
                 ) : (
                     <p>Loading...</p>
                 )}
-                <div className="bg-white border border-gray-100 rounded mt-4">
+                <div className="mt-4">
                 {data ? (
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-4 gap-4">
                     {otherCoins.map((item) => (
-                        <div key={item.id} className="p-4 flex justify-between border-b border-slate-100">
-                            <div className="flex flex-row items-center">
+                        <div key={item.id} className="p-4 flex justify-between border rounded border-slate-100 bg-white">
+                            <div className="flex flex-row items-center justify-between">
                                 <img src={item.iconUrl} className="w-10 h-10"/>
                                 <div className=''>
                                     <p className="ml-4 font-bold text-slate-700">{item.symbol}</p>
                                     <p className="ml-4 text-xs text-slate-700">{item.name}</p>
                                 </div>
+                            </div>
+                            <div>
+                                <p className="bg-slate-200 font-bold text-sm rounded py-2 px-4">{item.change}%</p>
                             </div>
                         </div>
                     ))}

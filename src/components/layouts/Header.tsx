@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <div className="w-full bg-white px-4 py-3 flex justify-between border-b border-slate-100">
         <div className="w-3/6 flex justify-start items-center">
-          dashboqard
+          <p className="font-bold text-2xl text-slate-700">Home</p>
         </div>
         <div className="w-3/6 flex justify-end items-center">
           {isOpen && (
